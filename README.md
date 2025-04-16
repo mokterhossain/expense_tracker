@@ -34,7 +34,7 @@ EC2 Instance
 5. Environment Configuration
    # Create .env file
       nano .env
-   Past:
+   # Past:
       DATABASE_URL=postgresql+asyncpg://postgres:postgres123@localhost/expense_tracker
       SECRET_KEY=mQN4BpX7zr!vT%KwY3RlVqStUv2y_A-HaPnMdShJeCk
       ALGORITHM=HS256
@@ -55,7 +55,7 @@ EC2 Instance
 
 9. Set Up a Systemd Service (Optional but Recommended)
    sudo nano /etc/systemd/system/fastapi.service
-   Paste this:
+   # Paste this:
       [Unit]
       Description=FastAPI app
       After=network.target
@@ -69,15 +69,15 @@ EC2 Instance
       [Install]
       WantedBy=multi-user.target
 
-   Enable and start:
+   # Enable and start:
      sudo systemctl daemon-reexec
      sudo systemctl enable fastapi
      sudo systemctl start fastapi
 
 10. Use Nginx as a Reverse Proxy
-   Edit Nginx config:
+   # Edit Nginx config:
      sudo nano /etc/nginx/sites-available/fastapi
-   Paste:
+   # Paste:
       server {
       listen 80;
       server_name your-ec2-ip;
@@ -88,7 +88,7 @@ EC2 Instance
           proxy_set_header X-Real-IP $remote_addr;
         }
       }
-   Enable it:
+   # Enable it:
      sudo ln -s /etc/nginx/sites-available/fastapi /etc/nginx/sites-enabled
      sudo nginx -t
      sudo systemctl restart nginx
